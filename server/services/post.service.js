@@ -29,4 +29,15 @@ export default class Post {
     const data = await PostModel.find({})
     return data;
   }
+
+  static async edit(id, title, description, image) {
+    const update = await PostModel.findOneAndUpdate({_id: id}, {title, description, image})
+    if (update) return {message: "Post successfully updated", success: true}
+    return {message: "Post not found", success: false}
+  }
+
+  static async getById(id) {
+    const post = PostModel.findOne({ _id: id })
+    return post
+  }
 }

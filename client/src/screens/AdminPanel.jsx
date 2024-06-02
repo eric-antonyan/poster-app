@@ -28,7 +28,7 @@ const AdminPanel = () => {
   const [createImage, setCreateImage] = useState("")
   const [createTitle, setCreateTitle] = useState("")
   const [createDescription, setCreateDescription] = useState("")
-  const [page, setPage] = useState(0)
+  const [page, setPage] = useState(-1)
   const links = [
     {
       text: "General",
@@ -146,15 +146,16 @@ const AdminPanel = () => {
       <motion.h1 initial={{ marginTop: "40px", opacity: 0 }} animate={{ marginTop: "55px", opacity: 1 }} className="text-[2rem] text-center font-bold">Admin Panel</motion.h1>
       <motion.div className="max-w-[600px] mx-auto rounded-3xl bg-indigo-500" initial={{ opacity: 0, scale: 0 }} animate={formSize}>
         <ul className="w-[100%] flex relative justify-between p-[20px] px-[30px]">
-          <AdminTab setFormSize={setFormSize} formRef={ref} setAdmPosition={setAdmPosition} setPage={setPage} idx={0}>Edit Post</AdminTab>
-          <AdminTab setFormSize={setFormSize} formRef={ref} setAdmPosition={setAdmPosition} setPage={setPage} idx={1}>Create Post</AdminTab>
-          <AdminTab setFormSize={setFormSize} formRef={ref} setAdmPosition={setAdmPosition} setPage={setPage} idx={2}>Delete Post</AdminTab>
+          <AdminTab page={page} setFormSize={setFormSize} formRef={ref} setAdmPosition={setAdmPosition} setPage={setPage} idx={0}>Edit Post</AdminTab>
+          <AdminTab page={page} setFormSize={setFormSize} formRef={ref} setAdmPosition={setAdmPosition} setPage={setPage} idx={1}>Create Post</AdminTab>
+          <AdminTab page={page} setFormSize={setFormSize} formRef={ref} setAdmPosition={setAdmPosition} setPage={setPage} idx={2}>Delete Post</AdminTab>
           <motion.div animate={admPosition} className="bg-[#fff] absolute h-[3px] rounded-full bottom-0"></motion.div>
         </ul>
         {
           page === 0 ?
             <motion.form ref={ref} initial={{opacity: 0, y: 20}} animate={{opacity: 1, y: 30}} exit={{opacity: 0, y: 20}} className="max-w-[400px] gap-4 flex flex-col mx-auto w-full" action="">
               <Input label="Post ID"></Input>
+              <Input label="Edit Post Image URL"></Input>
               <Input label="Edit Post Title"></Input>
               <Input label="Edit Post Description"></Input>
               <Button color="success">Save Updates</Button>

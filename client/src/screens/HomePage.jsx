@@ -34,6 +34,7 @@ const HomePage = () => {
 
   const [posts, setPosts] = useState([])
 
+  
   useEffect(() => {
     const fetchData = async () => {
       const response = await axios.get("/connect/api/posts")
@@ -42,7 +43,7 @@ const HomePage = () => {
     }
 
     fetchData()
-  }, [posts])
+  }, [])
 
   const location = useLocation()
   const pathName = location.pathname
@@ -63,13 +64,13 @@ const HomePage = () => {
           <motion.div layoutId="navswiper" animate={position} className="bg-primary bottom-[10px] h-[3px] rounded-full absolute"></motion.div>
         </NavbarContent>
       </Navbar>
-      <motion.h1 initial={{ marginTop: "40px", opacity: 0 }} animate={{ marginTop: "55px", opacity: 1 }} className="text-[2rem] text-center font-bold">Products</motion.h1>
+      <motion.h1 initial={{ marginTop: "40px", opacity: 0 }} animate={{ marginTop: "55px", opacity: 1 }} className="text-[2rem] text-center font-bold">Recent Posts</motion.h1>
       <motion.div className="w-[100%] gap-4 grid grid-cols-3 h-[100px] p-[25px] mx-auto" style={{ maxWidth: "1140px" }}>
         {
           posts.map((item, i) => {
             return (
               posts.length === 0 ? <motion.div className="text-primary">No Posts</motion.div> : <motion.img
-                layoutId={`card-${item.id}`}
+                layoutId={`card-${item._id}`}
                 onClick={() => setSelected(item)}
                 initial={{ y: -10, opacity: 0 }}
                 animate={{ y: 0, opacity: 1 }}
